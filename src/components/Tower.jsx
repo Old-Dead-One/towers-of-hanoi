@@ -6,17 +6,9 @@ export default function Tower({ image }) {
         backgroundSize: "cover",
         height: "70vh",
         width: "10vw",
-        marginRight: "120px",
-        marginLeft: "120px",
-        marginBottom: "20px"
     }
 
     return (
         <div style={styles}></div>
     );
 };
-
-
-
-
-

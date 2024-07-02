@@ -1,0 +1,51 @@
+import React, { useState } from "react";  // Import React and useState hook from React library
+import Tower from "./Tower";  // Import Tower component from './Tower.js' or './Tower.jsx'
+import Disk from "./Disk";  // Import Disk component from './Disk.js' or './Disk.jsx'
+import towerOne from "../assets/towerOne.png";  // Import image for tower one from assets
+import towerTwo from "../assets/towerTwo.png";  // Import image for tower two from assets
+import towerThree from "../assets/towerThree.png";  // Import image for tower three from assets
+
+export default function App() {  // Define functional component named App
+    const [towers, setTowers] = useState([[5, 4, 3, 2, 1], [], []]);  // State hook to manage towers, initialized with 5 disks on tower one and empty on towers two and three
+    const [selectedDisk, setSelectedDisk] = useState(null);  // State hook to manage selected disk, initially set to null
+
+    const handleDiskSelect = (towerIndex, disk) => {  // Function to handle disk selection
+        setSelectedDisk({ towerIndex, disk });  // Set selected disk with tower index and disk size
+    };
+
+    const handleMove = (toTowerIndex) => {  // Function to handle disk movement
+        if (selectedDisk !== null) {  // Check if there's a selected disk
+            const { towerIndex: fromTowerIndex, disk } = selectedDisk;  // Destructure tower index and disk size from selected disk
+
+            const newTowers = towers.map(tower => [...tower]);  // Create a new array of towers using map and spread operator
+            if (newTowers[toTowerIndex].length === 0 || newTowers[toTowerIndex][newTowers[toTowerIndex].length - 1] > disk) {  // Check if target tower is empty or top disk is larger than moving disk
+                newTowers[fromTowerIndex].pop();  // Remove top disk from source tower
+                newTowers[toTowerIndex].push(disk);  // Push moving disk to target tower
+
+                setTowers(newTowers);  // Update towers state with new tower configuration
+                setSelectedDisk(null);  // Reset selected disk to null
+            }
+        }
+    };
+
+    return (
+        <div className="flex-container">  // Outer container for flex display
+            {towers.map((tower, index) => (  // Map through towers array
+                <div key={index} className="tower-container" onClick={() => handleMove(index)}>  // Tower container with key and click handler for moving disks
+                    <Tower image={index === 0 ? towerOne : index === 1 ? towerTwo : towerThree} />  // Display tower component with dynamic image based on index
+                    <div className="disk-container">  // Container for disks
+                        {tower.map((disk, diskIndex) => (  // Map through disks array within tower
+                            <Disk
+                                key={diskIndex}  // Unique key for each disk
+                                size={disk}  // Size of current disk
+                                totalDisks={tower.length}  // Total number of disks in current tower
+                                index={diskIndex}  // Index of current disk
+                                onSelect={() => handleDiskSelect(index, disk)}  // Click handler for selecting current disk
+                            />
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
