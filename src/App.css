@@ -29,6 +29,7 @@ body {
 
 h1 {
   font-family: fantasy;
+  margin: 0px;
 }
 
 .tower-container {
@@ -38,7 +39,7 @@ h1 {
   align-items: center;
   height: 70vh;
   width: 10vw;
-  margin: 0 60px;
+  margin: 0 70px;
   /* border: 5px solid black; */
 }
 
@@ -52,15 +53,12 @@ h1 {
   /* border: 5px solid black; */
 }
 
-@media (max-width: 768px) {
-  .flex-container {
-    flex-direction: column;
-    align-items: center;
-  }
+.active-disk {
+  border: 5px;
+  box-shadow: 0 0 10px fuchsia;
+}
 
-  .tower-container {
-    width: 20vw;
-    height: auto;
-    margin: 10px 0;
-  }
+.move-counter {
+  font-size: 18px;
+  margin: 10px;
 }

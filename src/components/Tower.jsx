@@ -11,4 +11,4 @@ export default function Tower({ image }) {
     return (
         <div style={styles}></div>
     );
-};
+}; 
