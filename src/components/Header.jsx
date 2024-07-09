@@ -1,5 +1,4 @@
 import React from 'react';
-import MoveCounter from './MoveCounter';
 
 export default function Header() {
     return (

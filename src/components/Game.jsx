@@ -75,8 +75,6 @@ export default function Game() {
                                 <Disk
                                     key={diskIndex}
                                     size={disk}
-                                    totalDisks={tower.length}
-                                    index={diskIndex}
                                     onSelect={() => handleDiskSelect(index, diskIndex)}
                                     isSelected={selectedDisk && selectedDisk.towerIndex === index && selectedDisk.disk === disk}
                                     isTopmost={diskIndex === tower.length - 1}
