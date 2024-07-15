@@ -1,0 +1,27 @@
+  1 # Simple workflow for deploying static content to GitHub Pages
+  2 name: Deploy static content to Pages
+  3 
+  4 on:
+  5   # Runs on pushes targeting the default branch
+  6   push:
+  7     branches: ['main']
+  8 
+  9   # Allows you to run this workflow manually from the Actions tab
+ 10   workflow_dispatch:
+ 11 
+ 12 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
+ 13 permissions:
+ 14   contents: read                                                                                                         
+ 15   pages: write
+ 16   id-token: write
+ 17 
+ 18 # Allow one concurrent deployment
+ 19 concurrency:
+ 20   group: 'pages'
+ 21   cancel-in-progress: true
+ 22 
+ 23 jobs:
+ 24   # Single deploy job since we're just deploying
+ 25   deploy:
+ 26     environment:
+"deploy.yaml" 51L, 1295B
